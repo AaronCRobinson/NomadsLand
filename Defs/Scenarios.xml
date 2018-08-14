@@ -9,7 +9,7 @@
 			<summary>Six badasses all out of bubblegum.</summary>
 			<playerFaction>
 				<def>PlayerFaction</def>
-				<factionDef>PlayerColony</factionDef>
+				<factionDef>PlayerNomads</factionDef>
 			</playerFaction>
 			<parts>
 
