@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+  <!--=================== rules changes =================-->
+
+  <ScenPartDef>
+    <defName>Rule_DisallowAllBuilding</defName>
+    <label>disallow all building</label>
+    <description>Cannot build anything.</description>
+    <scenPartClass>NomadsLand.Rule_DisallowAllBuilding</scenPartClass>
+    <category>Rule</category>
+    <selectionWeight>1.0</selectionWeight>
+    <summaryPriority>1000</summaryPriority>
+  </ScenPartDef>
+
+</Defs>
