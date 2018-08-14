@@ -1,6 +1,0 @@
-C:\Users\robin\Desktop\Games\RimWorld Modding\Source\NomadsLand\Assemblies\NomadsLand.dll
-C:\Users\robin\Desktop\Games\RimWorld Modding\Source\NomadsLand\Assemblies\NomadsLand.pdb
-C:\Users\robin\Desktop\Games\RimWorld Modding\Source\NomadsLand\Source\NomadsLand\obj\Debug\NomadsLand.csproj.CoreCompileInputs.cache
-C:\Users\robin\Desktop\Games\RimWorld Modding\Source\NomadsLand\Source\NomadsLand\obj\Debug\NomadsLand.csproj.CopyComplete
-C:\Users\robin\Desktop\Games\RimWorld Modding\Source\NomadsLand\Source\NomadsLand\obj\Debug\NomadsLand.dll
-C:\Users\robin\Desktop\Games\RimWorld Modding\Source\NomadsLand\Source\NomadsLand\obj\Debug\NomadsLand.pdb

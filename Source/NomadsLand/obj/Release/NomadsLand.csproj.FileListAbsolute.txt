@@ -1,5 +1,0 @@
-C:\Users\robin\Desktop\Games\RimWorld Modding\Source\NomadsLand\Assemblies\NomadsLand.dll
-C:\Users\robin\Desktop\Games\RimWorld Modding\Source\NomadsLand\Source\NomadsLand\obj\Release\NomadsLand.csproj.CoreCompileInputs.cache
-C:\Users\robin\Desktop\Games\RimWorld Modding\Source\NomadsLand\Source\NomadsLand\obj\Release\NomadsLand.csproj.CopyComplete
-C:\Users\robin\Desktop\Games\RimWorld Modding\Source\NomadsLand\Source\NomadsLand\obj\Release\NomadsLand.dll
-C:\Users\robin\Desktop\Games\RimWorld Modding\Source\NomadsLand\Source\NomadsLand\obj\Release\NomadsLand.csprojAssemblyReference.cache
