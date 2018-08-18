@@ -4,9 +4,9 @@
 	<ScenarioDef>
 		<defName>RoamingGang</defName>
 		<label>Roaming Gang</label>
-		<description>Your squad has found a rim world to plunder, consisting of six of the badest spacers in the quadrant. Maybe if you raid enough you can find way off this rock with your booty.\n\nNote: Since you cannot build, this is a difficult scenario.</description>
+		<description>Your squad has found a rim world to plunder, consisting of nine of the badest spacers in the quadrant. Maybe if you raid enough you can find way off this rock with your booty.\n\nNote: Since you cannot build, this is a difficult scenario.</description>
 		<scenario>
-			<summary>Six badasses all out of bubblegum.</summary>
+			<summary>Nine badasses all out of bubblegum.</summary>
 			<playerFaction>
 				<def>PlayerFaction</def>
 				<factionDef>PlayerNomads</factionDef>
@@ -16,7 +16,7 @@
 				<!-- Config pages -->
 				<li Class="ScenPart_ConfigPage_ConfigureStartingPawns">
 					<def>ConfigPage_ConfigureStartingPawns</def>
-					<pawnCount>6</pawnCount>
+					<pawnCount>9</pawnCount>
           <pawnChoiceCount>10</pawnChoiceCount>
 				</li>
 
@@ -73,6 +73,9 @@
 				<li Class="NomadsLand.Rule_DisallowAllBuilding">
 					<def>Rule_DisallowAllBuilding</def>
 				</li>
+				<li Class="NomadsLand.Rule_MapsGenerateIncidents">
+					<def>Rule_MapsGenerateIncidents</def>
+				</li>
 
 				<!-- Game start dialog -->
 				<li Class="ScenPart_GameStartDialog">
@@ -83,6 +86,15 @@
 
 			</parts>
 		</scenario>
+
+		<modExtensions>
+			<li Class="NomadsLand.WorldGenStepsAdd_DefModExtension">
+				<extendedSteps>
+					<li>MoreRoads</li>
+					<li>MoreRivers</li>
+				</extendedSteps>
+			</li>
+		</modExtensions>
 	</ScenarioDef>
 
 </Defs>

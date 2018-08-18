@@ -45,10 +45,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DisallowAllBuildingScenario.cs" />
+    <Compile Include="DefOf.cs" />
+    <Compile Include="HarmonyPatches.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RulesExt.cs" />
-    <Compile Include="Rule_DisallowAllBuilding.cs" />
+    <Compile Include="Rules.cs" />
+    <Compile Include="DefModExtensions.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

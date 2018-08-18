@@ -13,4 +13,14 @@
     <summaryPriority>1000</summaryPriority>
   </ScenPartDef>
 
+  <ScenPartDef>
+    <defName>Rule_MapsGenerateIncidents</defName>
+    <label>maps generate incidents</label>
+    <description>New maps generate incidents.</description>
+    <scenPartClass>NomadsLand.Rule_MapsGenerateIncidents</scenPartClass>
+    <category>Rule</category>
+    <selectionWeight>1.0</selectionWeight>
+    <summaryPriority>1000</summaryPriority>
+  </ScenPartDef>
+
 </Defs>

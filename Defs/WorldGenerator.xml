@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+  <WorldGenStepDef>
+    <defName>MoreRoads</defName>
+    <order>1100</order>
+    <worldGenStep Class="WorldGenStep_Roads"/>
+  </WorldGenStepDef>
+  
+  <WorldGenStepDef>
+    <defName>MoreRivers</defName>
+    <order>1200</order>
+    <worldGenStep Class="WorldGenStep_Rivers"/>
+  </WorldGenStepDef>
+
+</Defs>

@@ -17,7 +17,9 @@
     <pawnSingular>nomad</pawnSingular>
     <pawnsPlural>nomads</pawnsPlural>
     <techLevel>Industrial</techLevel>
-    <backstoryCategory>Raider</backstoryCategory>
+    <backstoryCategories>
+      <li>Raider</li>
+    </backstoryCategories>
     <expandingIconTexture>World/WorldObjects/Expanding/Town</expandingIconTexture>
     <playerInitialSettlementNameMaker>NamerInitialSettlementColony</playerInitialSettlementNameMaker>
 		<factionNameMaker>NamerFactionOutlander</factionNameMaker>
