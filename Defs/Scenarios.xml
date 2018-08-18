@@ -20,6 +20,11 @@
           <pawnChoiceCount>10</pawnChoiceCount>
 				</li>
 
+				<!-- Extra World Gen Steps -->
+				<li Class="NomadsLand.ScenPart_GenStepOutposts">
+					<def>GenStepOutposts</def>
+				</li>
+
 				<!-- Player pawns modifiers -->
 				<li Class="ScenPart_ForcedTrait">
 					<def>ForcedTrait</def>
@@ -87,14 +92,13 @@
 			</parts>
 		</scenario>
 
-		<modExtensions>
+		<!--<modExtensions>
 			<li Class="NomadsLand.WorldGenStepsAdd_DefModExtension">
 				<extendedSteps>
-					<li>MoreRoads</li>
-					<li>MoreRivers</li>
+					<li>Outposts</li>
 				</extendedSteps>
 			</li>
-		</modExtensions>
+		</modExtensions>-->
 	</ScenarioDef>
 
 </Defs>

@@ -23,4 +23,14 @@
     <summaryPriority>1000</summaryPriority>
   </ScenPartDef>
 
+  <ScenPartDef>
+    <defName>GenStepOutposts</defName>
+    <label>generate step outposts</label>
+    <description>World Gen: Outposts</description>
+    <scenPartClass>NomadsLand.ScenPart_GenStepOutposts</scenPartClass>
+    <category>WorldThing</category>
+    <selectionWeight>1.0</selectionWeight>
+    <summaryPriority>1000</summaryPriority>
+  </ScenPartDef>
+
 </Defs>

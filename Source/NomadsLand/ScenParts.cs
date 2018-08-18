@@ -16,4 +16,14 @@ namespace NomadsLand
     {
         protected override void ApplyRule() => Current.Game.GetComponent<NomadsLand_RulesExt>().MapsGenerateIncidents = true;
     }
+
+    public class ScenPart_GenStepOutposts : ScenPart
+    {
+        public override void PostWorldGenerate()
+        {
+            Log.Message("ScenPart_GenStepOutposts");
+            base.PostWorldGenerate();
+            WorldGenStep_Helper.GenerateOutpostsIntoWorld();
+        }
+    }
 }

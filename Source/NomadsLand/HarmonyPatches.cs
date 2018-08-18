@@ -41,7 +41,7 @@ namespace NomadsLand
         static WorldGenerator_Patches()
         {
             HarmonyInstance harmony = HarmonyInstance.Create("rimworld.whyisthat.nomadsland.worldgeneratorpatches");
-            harmony.Patch(AccessTools.Method(typeof(WorldGenerator), nameof(WorldGenerator.GenerateWorld)), new HarmonyMethod(typeof(WorldGenerator_Patches), nameof(GenerateWorldPrefix)), null); 
+            //harmony.Patch(AccessTools.Method(typeof(WorldGenerator), nameof(WorldGenerator.GenerateWorld)), new HarmonyMethod(typeof(WorldGenerator_Patches), nameof(GenerateWorldPrefix)), null); 
         }
 
         // NOTE: only works with predefined defs
