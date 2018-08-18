@@ -50,8 +50,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RulesExt.cs" />
     <Compile Include="ScenParts.cs" />
-    <Compile Include="DefModExtensions.cs" />
-    <Compile Include="WorldGenSteps.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

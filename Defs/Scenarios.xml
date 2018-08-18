@@ -92,13 +92,6 @@
 			</parts>
 		</scenario>
 
-		<!--<modExtensions>
-			<li Class="NomadsLand.WorldGenStepsAdd_DefModExtension">
-				<extendedSteps>
-					<li>Outposts</li>
-				</extendedSteps>
-			</li>
-		</modExtensions>-->
 	</ScenarioDef>
 
 </Defs>
