@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Verse;
+﻿using Verse;
 using RimWorld;
 
 namespace NomadsLand
@@ -15,6 +11,9 @@ namespace NomadsLand
         private bool mapsGenerateIncidents = false;
         public bool MapsGenerateIncidents { get; set; }
 
+        private bool nothingForbidden = false;
+        public bool NothingForbidden { get; set; }
+
         public NomadsLand_RulesExt() { }
 
         public NomadsLand_RulesExt(Game game) { }
@@ -23,14 +22,13 @@ namespace NomadsLand
         {
             Scribe_Values.Look<bool>(ref this.disallowBuildings, "disallowAllBuilding", false);
             Scribe_Values.Look<bool>(ref this.mapsGenerateIncidents, "mapsGenerateIncidents", false);
+            Scribe_Values.Look<bool>(ref this.nothingForbidden, "nothingForbidden", false);
         }
     }
 
     public class MapIncidentGenerator : MapComponent
     {
-        public MapIncidentGenerator(Map map) : base(map)
-        {
-        }
+        public MapIncidentGenerator(Map map) : base(map) { }
 
         public override void MapGenerated()
         {

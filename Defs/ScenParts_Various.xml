@@ -1,6 +1,28 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Defs>
 
+  <!--================== extra gen steps ================-->
+
+  <ScenPartDef>
+    <defName>GenStepOutposts</defName>
+    <label>generate step outposts</label>
+    <description>World Gen: Outposts</description>
+    <scenPartClass>NomadsLand.ScenPart_GenStepOutposts</scenPartClass>
+    <category>WorldThing</category>
+    <selectionWeight>1.0</selectionWeight>
+    <summaryPriority>10000</summaryPriority>
+  </ScenPartDef>
+  
+  <ScenPartDef>
+    <defName>GenStepPrisonerRescue</defName>
+    <label>generate step prisoner rescue</label>
+    <description>World Gen: Prisoner Rescues</description>
+    <scenPartClass>NomadsLand.ScenPart_GenStepPrisonerRescues</scenPartClass>
+    <category>WorldThing</category>
+    <selectionWeight>1.0</selectionWeight>
+    <summaryPriority>10000</summaryPriority>
+  </ScenPartDef>
+
   <!--=================== rules changes =================-->
 
   <ScenPartDef>
@@ -24,11 +46,11 @@
   </ScenPartDef>
 
   <ScenPartDef>
-    <defName>GenStepOutposts</defName>
-    <label>generate step outposts</label>
-    <description>World Gen: Outposts</description>
-    <scenPartClass>NomadsLand.ScenPart_GenStepOutposts</scenPartClass>
-    <category>WorldThing</category>
+    <defName>Rule_NothingForbidden</defName>
+    <label>nothing forbidden</label>
+    <description>Nothing is forbidden from your pawns.</description>
+    <scenPartClass>NomadsLand.Rule_NothingForbidden</scenPartClass>
+    <category>Rule</category>
     <selectionWeight>1.0</selectionWeight>
     <summaryPriority>1000</summaryPriority>
   </ScenPartDef>

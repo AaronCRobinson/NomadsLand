@@ -10,7 +10,7 @@
   
   <FactionDef ParentName="NL_PlayerFactionBase">
     <defName>PlayerNomads</defName>
-    <label>Raider landing</label>
+    <label>raider landing</label>
     <description>A landing of off-world raiders.</description>
     <isPlayer>true</isPlayer>
     <basicMemberKind>Nomads</basicMemberKind>

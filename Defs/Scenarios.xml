@@ -24,6 +24,9 @@
 				<li Class="NomadsLand.ScenPart_GenStepOutposts">
 					<def>GenStepOutposts</def>
 				</li>
+				<li Class="NomadsLand.ScenPart_GenStepPrisonerRescues">
+					<def>GenStepPrisonerRescue</def>
+				</li>
 
 				<!-- Player pawns modifiers -->
 				<li Class="ScenPart_ForcedTrait">
@@ -68,6 +71,11 @@
           <def>StartingThing_Defined</def>
           <thingDef>Gun_IncendiaryLauncher</thingDef>
         </li>
+				<li Class="ScenPart_StartingThing_Defined">
+          <def>StartingThing_Defined</def>
+          <thingDef>Bedroll</thingDef>
+					<count>12</count>
+        </li>
 				<li Class="ScenPart_StartingAnimal">
 					<def>StartingAnimal</def>
 					<count>3</count>
@@ -78,8 +86,12 @@
 				<li Class="NomadsLand.Rule_DisallowAllBuilding">
 					<def>Rule_DisallowAllBuilding</def>
 				</li>
+				<!-- TODO: mtb for spawning new sites... -->
 				<li Class="NomadsLand.Rule_MapsGenerateIncidents">
 					<def>Rule_MapsGenerateIncidents</def>
+				</li>
+				<li Class="NomadsLand.Rule_NothingForbidden">
+					<def>Rule_NothingForbidden</def>
 				</li>
 
 				<!-- Game start dialog -->
