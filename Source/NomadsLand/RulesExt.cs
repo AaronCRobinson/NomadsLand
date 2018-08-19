@@ -14,6 +14,9 @@ namespace NomadsLand
         private bool nothingForbidden = false;
         public bool NothingForbidden { get; set; }
 
+        private bool caravanStart = false;
+        public bool CaravanStart { get; set; }
+
         public NomadsLand_RulesExt() { }
 
         public NomadsLand_RulesExt(Game game) { }
@@ -23,6 +26,7 @@ namespace NomadsLand
             Scribe_Values.Look<bool>(ref this.disallowBuildings, "disallowAllBuilding", false);
             Scribe_Values.Look<bool>(ref this.mapsGenerateIncidents, "mapsGenerateIncidents", false);
             Scribe_Values.Look<bool>(ref this.nothingForbidden, "nothingForbidden", false);
+            Scribe_Values.Look<bool>(ref this.caravanStart, "caravanStart", false);
         }
     }
 

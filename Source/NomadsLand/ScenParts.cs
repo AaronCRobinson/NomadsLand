@@ -22,6 +22,16 @@ namespace NomadsLand
         protected override void ApplyRule() => Current.Game.GetComponent<NomadsLand_RulesExt>().NothingForbidden = true;
     }
 
+    // It would be nice to consolidate this with ScenPart_PlayerPawnsArriveMethod
+    public class ScenPart_CaravanStart : ScenPart
+    {
+        public override void PreConfigure()
+        {
+            base.PreConfigure();
+            Current.Game.GetComponent<NomadsLand_RulesExt>().CaravanStart = true;
+        }
+    }
+
     public class ScenPart_GenStepPrisonerRescues : ScenPart
     {
         public override void PostWorldGenerate()
@@ -53,7 +63,7 @@ namespace NomadsLand
     public static class ScenPart_Helper
     {
         // TODO: include these in the defs as variable
-        private static readonly FloatRange OutpostsPer100kTiles = new FloatRange(90f, 115f);
+        private static readonly FloatRange OutpostsPer100kTiles = new FloatRange(135f, 165f);
         private static readonly FloatRange PrisonerRescuePer100kTiles = new FloatRange(65f, 75f);
 
         public static void GenerateOutpostsIntoWorld()

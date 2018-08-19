@@ -26,6 +26,16 @@
   <!--=================== rules changes =================-->
 
   <ScenPartDef>
+    <defName>ScenPart_CaravanStart</defName>
+    <label>caravan start</label>
+    <description>All your pawns start in a caravan.</description>
+    <scenPartClass>NomadsLand.ScenPart_CaravanStart</scenPartClass>
+    <category>Rule</category>
+    <selectionWeight>1.0</selectionWeight>
+    <summaryPriority>5000</summaryPriority>
+  </ScenPartDef>
+
+  <ScenPartDef>
     <defName>Rule_DisallowAllBuilding</defName>
     <label>disallow all building</label>
     <description>Cannot build anything.</description>
