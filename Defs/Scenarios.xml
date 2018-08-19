@@ -2,6 +2,109 @@
 <Defs>
 
 	<ScenarioDef>
+		<defName>Gang</defName>
+		<label>Gang</label>
+		<description>Your gang has found a rim world to plunder, consisting of four of the badest spacers in the quadrant. You have reconnaissance and hope to setup shop making selling slaves or making hats.</description>
+		<scenario>
+			<summary>Four badasses all out of bubblegum.</summary>
+			<playerFaction>
+				<def>PlayerFaction</def>
+				<factionDef>PlayerNomads</factionDef>
+			</playerFaction>
+			<parts>
+
+				<!-- Config pages -->
+				<li Class="ScenPart_ConfigPage_ConfigureStartingPawns">
+					<def>ConfigPage_ConfigureStartingPawns</def>
+					<pawnCount>4</pawnCount>
+          <pawnChoiceCount>10</pawnChoiceCount>
+				</li>
+
+				<!-- Extra World Gen Steps -->
+				<li Class="NomadsLand.ScenPart_GenStepOutposts">
+					<def>GenStepOutposts</def>
+				</li>
+				<li Class="NomadsLand.ScenPart_GenStepPrisonerRescues">
+					<def>GenStepPrisonerRescue</def>
+				</li>
+				<li Class="NomadsLand.ScenPart_GenStepItemStashes">
+					<def>GenStepItemStashes</def>
+				</li>
+
+				<!-- Player pawns modifiers -->
+				<li Class="ScenPart_ForcedTrait">
+					<def>ForcedTrait</def>
+					<chance>1</chance>
+					<trait>Bloodlust</trait>
+				</li>
+
+				<!-- Player starting stuff spawn method-->
+				<li Class="ScenPart_PlayerPawnsArriveMethod">
+					<def>PlayerPawnsArriveMethod</def>
+					<visible>false</visible>
+					<method>DropPods</method>
+				</li>
+
+				<!-- Player starting things -->
+				<li Class="ScenPart_StartingThing_Defined">
+					<def>StartingThing_Defined</def>
+					<thingDef>Pemmican</thingDef>
+					<count>2000</count>
+				</li>
+				<li Class="ScenPart_StartingThing_Defined">
+					<def>StartingThing_Defined</def>
+					<thingDef>MedicineHerbal</thingDef>
+					<count>40</count>
+				</li>
+        <li Class="ScenPart_StartingThing_Defined">
+          <def>StartingThing_Defined</def>
+          <thingDef>Gun_BoltActionRifle</thingDef>
+					<count>1</count>
+        </li>
+        <li Class="ScenPart_StartingThing_Defined">
+          <def>StartingThing_Defined</def>
+          <thingDef>Gun_Revolver</thingDef>
+					<count>1</count>
+        </li>
+				<li Class="ScenPart_StartingThing_Defined">
+          <def>StartingThing_Defined</def>
+          <thingDef>Gun_MachinePistol</thingDef>
+        </li>
+				<li Class="ScenPart_StartingThing_Defined">
+          <def>StartingThing_Defined</def>
+          <thingDef>Gun_IncendiaryLauncher</thingDef>
+        </li>
+				<li Class="ScenPart_StartingThing_Defined">
+          <def>StartingThing_Defined</def>
+          <thingDef>Bedroll</thingDef>
+					<stuff>Cloth</stuff>
+					<count>3</count>
+        </li>
+				<li Class="ScenPart_StartingAnimal">
+					<def>StartingAnimal</def>
+					<count>3</count>
+					<bondToRandomPlayerPawnChance>1.0</bondToRandomPlayerPawnChance>
+				</li>
+
+				<!-- Rules -->
+				<!-- TODO: mtb for spawning new sites... -->
+				<li Class="NomadsLand.Rule_MapsGenerateIncidents">
+					<def>Rule_MapsGenerateIncidents</def>
+				</li>
+
+				<!-- Game start dialog -->
+				<li Class="ScenPart_GameStartDialog">
+					<def>GameStartDialog</def>
+					<text>You wake up from stiring in the ship's halls, one of your squad members peaks in. 'Enough smokeleaf sarge. I snagged the ships reconnaissance scan for this planet.' You grab your squad of six and head for the pods. Maybe this planet has some bubblegum.</text>
+					<closeSound>GameStartSting</closeSound>
+				</li>
+
+			</parts>
+		</scenario>
+
+	</ScenarioDef>
+
+	<ScenarioDef>
 		<defName>RoamingGang</defName>
 		<label>Roaming Gang</label>
 		<description>Your squad has found a rim world to plunder, consisting of six of the badest spacers in the quadrant. Maybe if you raid enough you can find way off this rock with your booty.\n\nNote: Since you cannot build, this is a difficult scenario.</description>
@@ -27,6 +130,9 @@
 				<li Class="NomadsLand.ScenPart_GenStepPrisonerRescues">
 					<def>GenStepPrisonerRescue</def>
 				</li>
+				<!--<li Class="NomadsLand.ScenPart_GenStepItemStashes">
+					<def>GenStepItemStashes</def>
+				</li>-->
 
 				<li Class="NomadsLand.ScenPart_CaravanStart">
 					<def>ScenPart_CaravanStart</def>
@@ -79,7 +185,7 @@
           <def>StartingThing_Defined</def>
           <thingDef>Bedroll</thingDef>
 					<stuff>Cloth</stuff>
-					<count>12</count>
+					<count>7</count>
         </li>
 				<li Class="ScenPart_StartingAnimal">
 					<def>StartingAnimal</def>
@@ -102,7 +208,7 @@
 				<!-- Game start dialog -->
 				<li Class="ScenPart_GameStartDialog">
 					<def>GameStartDialog</def>
-					<text>Bang!</text>
+					<text>You wake up from stiring in the ship's halls, one of your squad members peaks in. 'Enough smokeleaf sarge. I snagged the ships reconnaissance scan for this planet.' You grab your squad of six and head for the pods. Maybe this planet has some bubblegum.</text>
 					<closeSound>GameStartSting</closeSound>
 				</li>
 

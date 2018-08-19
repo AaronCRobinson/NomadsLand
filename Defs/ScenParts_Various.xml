@@ -23,6 +23,16 @@
     <summaryPriority>10000</summaryPriority>
   </ScenPartDef>
 
+  <ScenPartDef>
+    <defName>GenStepItemStashes</defName>
+    <label>generate step item stashes</label>
+    <description>World Gen: Item Stashes</description>
+    <scenPartClass>NomadsLand.ScenPart_GenStepItemStashes</scenPartClass>
+    <category>WorldThing</category>
+    <selectionWeight>1.0</selectionWeight>
+    <summaryPriority>10000</summaryPriority>
+  </ScenPartDef>
+
   <!--=================== rules changes =================-->
 
   <ScenPartDef>

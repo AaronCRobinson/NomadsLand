@@ -52,7 +52,6 @@ namespace NomadsLand
                     yield return new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(CaravanStartTranspiler_Helper), nameof(CaravanStartTranspiler_Helper.HandleCarvanStart)));
 
                     // break to end of if
-                    //il.MarkLabel(endOfIf);
                     yield return new CodeInstruction(OpCodes.Br, endOfIf);
                     
                     instruction.labels.Add(settlementBlock);
@@ -80,9 +79,11 @@ namespace NomadsLand
                 // add items to caravans (animals still need to be added to world)
                 foreach (Thing thing in Find.Scenario.AllParts.SelectMany(scen => scen.PlayerStartingThings()))
                 {
-                    Log.Message($"{thing}");
                     if (thing is Pawn pawn && !pawn.IsWorldPawn())
+                    {
                         Find.WorldPawns.PassToWorld(pawn, PawnDiscardDecideMode.Decide);
+                        pawn.SetFactionDirect(Faction.OfPlayer);
+                    }
                     caravan.AddPawnOrItem(thing, false);
                 }
                 Find.WorldCameraDriver.JumpTo(Find.GameInitData.startingTile);

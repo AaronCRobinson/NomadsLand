@@ -60,11 +60,22 @@ namespace NomadsLand
         }
     }
 
+    public class ScenPart_GenStepItemStashes : ScenPart
+    {
+        public override void PostWorldGenerate()
+        {
+            base.PostWorldGenerate();
+            ScenPart_Helper.GenerateItemStashesIntoWorld();
+        }
+    }
+
+
     public static class ScenPart_Helper
     {
         // TODO: include these in the defs as variable
         private static readonly FloatRange OutpostsPer100kTiles = new FloatRange(135f, 165f);
         private static readonly FloatRange PrisonerRescuePer100kTiles = new FloatRange(65f, 75f);
+        private static readonly FloatRange ItemStashesPer100kTiles = new FloatRange(60f, 80f);
 
         public static void GenerateOutpostsIntoWorld()
         {
@@ -91,6 +102,24 @@ namespace NomadsLand
                                     select x).RandomElementByWeight((Faction x) => x.def.settlementGenerationWeight);
                 int tile = TileFinder.RandomSettlementTileFor(faction, false, null);
                 Site site = SiteMaker.TryMakeSite_SingleSitePart(SiteCoreDefOf.PrisonerWillingToJoin, "PrisonerRescueQuestThreat", tile, faction, true, null, true, null);
+                if (site == null) continue;
+                site.sitePartsKnown = true;
+                Find.WorldObjects.Add(site);
+            }
+        }
+
+        public static void GenerateItemStashesIntoWorld()
+        {
+            int num = GenMath.RoundRandom((float)Find.WorldGrid.TilesCount / 100000f * ItemStashesPer100kTiles.RandomInRange);
+            for (int k = 0; k < num; k++)
+            {
+                if (!SiteMakerHelper.TryFindSiteParams_SingleSitePart(SiteCoreDefOf.ItemStash, (!Rand.Chance(0.18f)) ? "ItemStashQuestThreat" : null, out SitePartDef sitePart, out Faction siteFaction, null, true, null))
+                    continue;
+
+                int tile = TileFinder.RandomSettlementTileFor(siteFaction, false, null);
+                Site site = SiteMaker.TryMakeSite_SingleSitePart(SiteCoreDefOf.ItemStash, new List<SitePartDef>() { sitePart }, tile, siteFaction, true, null, true, null);
+                //Site site = SiteMaker.MakeSite(SiteCoreDefOf.ItemStash, sitePart, tile, siteFaction, true, null);
+
                 if (site == null) continue;
                 site.sitePartsKnown = true;
                 Find.WorldObjects.Add(site);

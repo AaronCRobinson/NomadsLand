@@ -39,15 +39,30 @@ namespace NomadsLand
             base.MapGenerated();
             if (Current.Game.GetComponent<NomadsLand_RulesExt>().MapsGenerateIncidents)
             {
-                IncidentParms incidentParms = new IncidentParms()
-                {
-                    target = map,
-                    faction = map.ParentFaction,
-                    forced = true
-                };
-                Find.Storyteller.incidentQueue.Add(IncidentDefOf.StrangerInBlackJoin, Find.TickManager.TicksGame + 360, incidentParms);
+                if (Rand.Chance(0.0625f))
+                    Find.Storyteller.incidentQueue.Add(IncidentDefOf.StrangerInBlackJoin, Find.TickManager.TicksGame + Rand.Range(100,1000), this.IncidentParms);
+                if (Rand.Chance(0.14f))
+                    Find.Storyteller.incidentQueue.Add(RimWorld.IncidentDefOf.RaidEnemy, Find.TickManager.TicksGame + Rand.Range(100,1000), this.IncidentParms);
+                if (Rand.Chance(0.091f))
+                    Find.Storyteller.incidentQueue.Add(RimWorld.IncidentDefOf.VisitorGroup, Find.TickManager.TicksGame + Rand.Range(100,1000), this.IncidentParms);
+                if (Rand.Chance(0.32f))
+                    Find.Storyteller.incidentQueue.Add(RimWorld.IncidentDefOf.ManhunterPack, Find.TickManager.TicksGame + Rand.Range(100,1000), this.IncidentParms);
+                if (Rand.Chance(0.21f))
+                    Find.Storyteller.incidentQueue.Add(RimWorld.IncidentDefOf.ShipChunkDrop, Find.TickManager.TicksGame + Rand.Range(100,1000), this.IncidentParms);
             }
         }
+
+        public IncidentParms IncidentParms
+        {
+            get => new IncidentParms()
+            {
+                target = map,
+                faction = map.ParentFaction,
+                forced = true
+            };
+        }
+
+        
     }
 
 }
