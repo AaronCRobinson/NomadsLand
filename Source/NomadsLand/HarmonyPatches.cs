@@ -74,7 +74,7 @@ namespace NomadsLand
         {
             public static void HandleCarvanStart(Game curGame)
             {
-                curGame.tickManager.gameStartAbsTick = GenTicks.ConfiguredTicksAbsAtGameStart;
+                //curGame.tickManager.gameStartAbsTick = GenTicks.ConfiguredTicksAbsAtGameStart;
                 Caravan caravan = CaravanMaker.MakeCaravan(Find.GameInitData.startingAndOptionalPawns, Faction.OfPlayer, Find.GameInitData.startingTile, true);
                 // add items to caravans (animals still need to be added to world)
                 foreach (Thing thing in Find.Scenario.AllParts.SelectMany(scen => scen.PlayerStartingThings()))

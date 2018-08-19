@@ -1,5 +1,6 @@
 ﻿using Verse;
 using RimWorld;
+using RimWorld.Planet;
 
 namespace NomadsLand
 {
@@ -28,6 +29,18 @@ namespace NomadsLand
             Scribe_Values.Look<bool>(ref this.nothingForbidden, "nothingForbidden", false);
             Scribe_Values.Look<bool>(ref this.caravanStart, "caravanStart", false);
         }
+
+    }
+
+    public class NomadsLand_WorldComponent : WorldComponent
+    {
+        public NomadsLand_WorldComponent(World world) : base(world) { }
+
+        public override void FinalizeInit()
+        {
+            base.FinalizeInit();
+            Current.Game.tickManager.gameStartAbsTick = GenTicks.ConfiguredTicksAbsAtGameStart;
+        }
     }
 
     public class MapIncidentGenerator : MapComponent
@@ -49,6 +62,10 @@ namespace NomadsLand
                     Find.Storyteller.incidentQueue.Add(RimWorld.IncidentDefOf.ManhunterPack, Find.TickManager.TicksGame + Rand.Range(100,1000), this.IncidentParms);
                 if (Rand.Chance(0.21f))
                     Find.Storyteller.incidentQueue.Add(RimWorld.IncidentDefOf.ShipChunkDrop, Find.TickManager.TicksGame + Rand.Range(100,1000), this.IncidentParms);
+                if (Rand.Chance(0.017f))
+                    Find.Storyteller.incidentQueue.Add(RimWorld.IncidentDefOf.Quest_ItemStashAICore, Find.TickManager.TicksGame, this.IncidentParms);
+                if (Rand.Chance(0.007f))
+                    Find.Storyteller.incidentQueue.Add(RimWorld.IncidentDefOf.Quest_JourneyOffer, Find.TickManager.TicksGame, this.IncidentParms);
             }
         }
 

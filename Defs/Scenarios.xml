@@ -130,9 +130,9 @@
 				<li Class="NomadsLand.ScenPart_GenStepPrisonerRescues">
 					<def>GenStepPrisonerRescue</def>
 				</li>
-				<!--<li Class="NomadsLand.ScenPart_GenStepItemStashes">
+				<li Class="NomadsLand.ScenPart_GenStepItemStashes">
 					<def>GenStepItemStashes</def>
-				</li>-->
+				</li>
 
 				<li Class="NomadsLand.ScenPart_CaravanStart">
 					<def>ScenPart_CaravanStart</def>
