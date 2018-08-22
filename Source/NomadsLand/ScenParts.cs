@@ -22,6 +22,12 @@ namespace NomadsLand
         protected override void ApplyRule() => Current.Game.GetComponent<NomadsLand_RulesExt>().NothingForbidden = true;
     }
 
+    // TODO: consider adding a variable here for the multiplyer used in extending the timer.
+    public class Rule_ExtendForceExitTimer : ScenPart_Rule
+    {
+        protected override void ApplyRule() => Current.Game.GetComponent<NomadsLand_RulesExt>().ExtendForceExitTimer = true;
+    }
+
     // It would be nice to consolidate this with ScenPart_PlayerPawnsArriveMethod
     public class ScenPart_CaravanStart : ScenPart
     {
@@ -34,10 +40,12 @@ namespace NomadsLand
 
     public class ScenPart_GenStepPrisonerRescues : ScenPart
     {
+        private FloatRange prisonerRescuePer100kTiles = new FloatRange(65f, 75f);
+
         public override void PostWorldGenerate()
         {
             base.PostWorldGenerate();
-            ScenPart_Helper.GeneratePrisonerRecuesIntoWorld();
+            ScenPart_Helper.GeneratePrisonerRecuesIntoWorld(prisonerRescuePer100kTiles);
         }
 
         public override void PostGameStart()
@@ -51,50 +59,69 @@ namespace NomadsLand
         }
     }
 
-    public class ScenPart_GenStepOutposts : ScenPart
+
+    public abstract class GuasianAsymmThreatScenPart : ScenPart
     {
+        protected float meanThreatValue = 500;
+        protected float threatVariance = 1500;
+        protected SimpleCurve threatDensity = new SimpleCurve
+        {
+            { new CurvePoint(0f, 0f), true },
+            { new CurvePoint(100f, 500f), true },
+            { new CurvePoint(500f, 50f), true }
+        };
+    }
+
+    public class ScenPart_GenStepOutposts : GuasianAsymmThreatScenPart
+    {
+        private FloatRange outpostsPer100kTiles = new FloatRange(135f, 165f);
+
         public override void PostWorldGenerate()
         {
             base.PostWorldGenerate();
-            ScenPart_Helper.GenerateOutpostsIntoWorld();
+            GenerateOutpostsIntoWorld();
+        }
+
+        public void GenerateOutpostsIntoWorld()
+        {
+            int total = GenMath.RoundRandom((float)Find.WorldGrid.TilesCount / 100000f * outpostsPer100kTiles.RandomInRange);
+            int cnt = 0;
+            Log.Message($"Total: {total}");
+            while (cnt < total)
+            {
+                float threatLevel = Rand.Gaussian(meanThreatValue, threatVariance); 
+                int num = (int)threatDensity.Evaluate(threatLevel) / 20 + 1; // helps get greater spread
+                Log.Message($"Outposts - Threat {threatLevel}, number {num}");
+                for (int k = 0; k < num && cnt < total; k++, cnt++)
+                {
+                    Faction faction = (from x in Find.World.factionManager.AllFactionsListForReading
+                                       where !x.def.isPlayer && !x.def.hidden
+                                       select x).RandomElementByWeight((Faction x) => x.def.settlementGenerationWeight);
+                    int tile = TileFinder.RandomSettlementTileFor(faction, false, null);
+                    Site site = SiteMaker.MakeSite(SiteCoreDefOf.Nothing, SitePartDefOf.Outpost, tile, faction, true, threatLevel);
+                    site.sitePartsKnown = true;
+                    Find.WorldObjects.Add(site);
+                }
+            }
         }
     }
 
     public class ScenPart_GenStepItemStashes : ScenPart
     {
+        private FloatRange itemStashesPer100kTiles = new FloatRange(60f, 80f);
+
         public override void PostWorldGenerate()
         {
             base.PostWorldGenerate();
-            ScenPart_Helper.GenerateItemStashesIntoWorld();
+            ScenPart_Helper.GenerateItemStashesIntoWorld(itemStashesPer100kTiles);
         }
     }
 
-
     public static class ScenPart_Helper
     {
-        // TODO: include these in the defs as variable
-        private static readonly FloatRange OutpostsPer100kTiles = new FloatRange(135f, 165f);
-        private static readonly FloatRange PrisonerRescuePer100kTiles = new FloatRange(65f, 75f);
-        private static readonly FloatRange ItemStashesPer100kTiles = new FloatRange(60f, 80f);
-
-        public static void GenerateOutpostsIntoWorld()
+        public static void GeneratePrisonerRecuesIntoWorld(FloatRange densityRange)
         {
-            int num = GenMath.RoundRandom((float)Find.WorldGrid.TilesCount / 100000f * OutpostsPer100kTiles.RandomInRange);
-            for (int k = 0; k < num; k++)
-            {
-                Faction faction = (from x in Find.World.factionManager.AllFactionsListForReading
-                                    where !x.def.isPlayer && !x.def.hidden
-                                    select x).RandomElementByWeight((Faction x) => x.def.settlementGenerationWeight);
-                int tile = TileFinder.RandomSettlementTileFor(faction, false, null);
-                Site site = SiteMaker.MakeSite(SiteCoreDefOf.Nothing, SitePartDefOf.Outpost, tile, faction, true, null);
-                site.sitePartsKnown = true;
-                Find.WorldObjects.Add(site);
-            }
-        }
-
-        public static void GeneratePrisonerRecuesIntoWorld()
-        {
-            int num = GenMath.RoundRandom((float)Find.WorldGrid.TilesCount / 100000f * PrisonerRescuePer100kTiles.RandomInRange);
+            int num = GenMath.RoundRandom((float)Find.WorldGrid.TilesCount / 100000f * densityRange.RandomInRange);
             for (int k = 0; k < num; k++)
             {
                 Faction faction = (from x in Find.World.factionManager.AllFactionsListForReading
@@ -108,9 +135,9 @@ namespace NomadsLand
             }
         }
 
-        public static void GenerateItemStashesIntoWorld()
-        {
-            int num = GenMath.RoundRandom((float)Find.WorldGrid.TilesCount / 100000f * ItemStashesPer100kTiles.RandomInRange);
+        public static void GenerateItemStashesIntoWorld(FloatRange densityRange)
+{
+            int num = GenMath.RoundRandom((float)Find.WorldGrid.TilesCount / 100000f * densityRange.RandomInRange);
             for (int k = 0; k < num; k++)
             {
                 if (!SiteMakerHelper.TryFindSiteParams_SingleSitePart(SiteCoreDefOf.ItemStash, (!Rand.Chance(0.18f)) ? "ItemStashQuestThreat" : null, out SitePartDef sitePart, out Faction siteFaction, null, true, null))
@@ -118,7 +145,6 @@ namespace NomadsLand
 
                 int tile = TileFinder.RandomSettlementTileFor(siteFaction, false, null);
                 Site site = SiteMaker.TryMakeSite_SingleSitePart(SiteCoreDefOf.ItemStash, new List<SitePartDef>() { sitePart }, tile, siteFaction, true, null, true, null);
-                //Site site = SiteMaker.MakeSite(SiteCoreDefOf.ItemStash, sitePart, tile, siteFaction, true, null);
 
                 if (site == null) continue;
                 site.sitePartsKnown = true;

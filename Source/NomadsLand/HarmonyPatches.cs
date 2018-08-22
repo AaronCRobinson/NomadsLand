@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Reflection;
 using System.Collections.Generic;
 using System.Reflection.Emit;
@@ -25,6 +26,8 @@ namespace NomadsLand
             harmony.Patch(AccessTools.Method(typeof(ForbidUtility), nameof(ForbidUtility.SetForbiddenIfOutsideHomeArea)), new HarmonyMethod(typeof(HarmonyPatches), nameof(SkipForbidding)), null);
             harmony.Patch(AccessTools.Method(typeof(ScenPart_PlayerFaction), nameof(ScenPart_PlayerFaction.PreMapGenerate)), new HarmonyMethod(typeof(HarmonyPatches), nameof(SkipPlayerSettlementGeneration)), null);
             harmony.Patch(AccessTools.Method(typeof(Game), nameof(Game.InitNewGame)), null, null, new HarmonyMethod(typeof(HarmonyPatches), nameof(CaravanStartTranspiler)));
+            harmony.Patch(AccessTools.Method(typeof(WorldObject), nameof(WorldObject.GetInspectString)), null, null, new HarmonyMethod(typeof(HarmonyPatches), nameof(FactionNameSwitchRoo)));
+            harmony.Patch(AccessTools.Method(typeof(TimedForcedExit), nameof(TimedForcedExit.StartForceExitAndRemoveMapCountdown), new Type[] { typeof(int) }), new HarmonyMethod(typeof(HarmonyPatches), nameof(ExtendForceExitTimer)), null);
 #if DEBUG
             HarmonyInstance.DEBUG = false;
 #endif
@@ -96,16 +99,29 @@ namespace NomadsLand
         public static bool SkipForbidding() => !Current.Game.GetComponent<NomadsLand_RulesExt>().NothingForbidden;
         public static bool SkipPlayerSettlementGeneration() => !CaravanStart;
 
+        private static readonly MethodInfo MI_DesignationGetter = AccessTools.Property(typeof(Designator), "Designation").GetGetMethod();
+        private static readonly HashSet<BuildableDef> WhiteListedBuildableDefs = new HashSet<BuildableDef>() { ThingDefOf.Campfire, ThingDefOf.TorchLamp };
+        private static readonly HashSet<Type> BlackListedDesignatorTypes = new HashSet<Type>() { };
         public static bool DesignatorAllowedPrefix(bool __result, Designator d)
         {
-            if (d is Designator_Place)
+            if (Current.Game.GetComponent<NomadsLand_RulesExt>().DisallowBuildings)
             {
-                // set result true, do not continue method execution
-                if (Current.Game.GetComponent<NomadsLand_RulesExt>().DisallowBuildings)
+                if (d is Designator_Place dp)
                 {
-                    __result = false;
-                    return false;
+                    // set result true, do not continue method execution
+                    if (!dp.PlacingDef.defName.Contains("Spot") && !WhiteListedBuildableDefs.Contains(dp.PlacingDef))
+                    {
+                        __result = false;
+                        return false;
+                    }
+                    return true; // whitelisted items
                 }
+                // TODO: disable flooring
+                //(MI_DesignationGetter.Invoke(d, new Object[] { }) as DesignationDef);
+                /*else if (d.PlacingDef.designationCategory != DesignationCategoryDefOf.Floors)
+                {
+                    
+                }*/
             }
             return true;
         }
@@ -119,6 +135,31 @@ namespace NomadsLand
             return false;
         }
 
+        public static IEnumerable<CodeInstruction> FactionNameSwitchRoo(IEnumerable<CodeInstruction> instructions)
+        {
+            MethodInfo MI_NameGetter = AccessTools.Property(typeof(Faction), nameof(Faction.Name)).GetGetMethod();
+            MethodInfo MI_NameDetour = AccessTools.Method(typeof(HarmonyPatches), nameof(ExtendingName));
+            foreach (CodeInstruction instruction in instructions)
+            {
+                if (instruction.operand == MI_NameGetter)
+                    yield return new CodeInstruction(instruction.opcode, MI_NameDetour);
+                else
+                    yield return instruction;
+            }
+        }
+
+        public static string ExtendingName(Faction faction) => $"{faction.Name} ({faction.RelationWith(Faction.OfPlayer).kind})";
+
+        private static readonly FieldInfo FI_ticksLeftToForceExitAndRemoveMap = AccessTools.Field(typeof(TimedForcedExit), "ticksLeftToForceExitAndRemoveMap");
+        public static bool ExtendForceExitTimer(TimedForcedExit __instance, int duration)
+        {
+            if (Current.Game.GetComponent<NomadsLand_RulesExt>().ExtendForceExitTimer)
+            {
+                FI_ticksLeftToForceExitAndRemoveMap.SetValue(__instance, duration * 10);
+                return false;
+            }
+            return true;
+        }
     }
 
 }

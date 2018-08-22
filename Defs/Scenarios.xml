@@ -23,12 +23,36 @@
 				<!-- Extra World Gen Steps -->
 				<li Class="NomadsLand.ScenPart_GenStepOutposts">
 					<def>GenStepOutposts</def>
+					<outpostsPer100kTiles>
+            <min>315.0</min>
+            <max>395.0</max>
+          </outpostsPer100kTiles>
+					<meanThreatValue>100</meanThreatValue>
+					<threatVariance>1250</threatVariance>
+					<threatDensity>
+						<points>
+							<li>0,0</li>
+							<li>25,25</li>
+							<li>100,550</li>
+							<li>200,150</li>
+							<li>300,50</li>
+							<li>1000,1</li>
+						</points>
+					</threatDensity>
 				</li>
 				<li Class="NomadsLand.ScenPart_GenStepPrisonerRescues">
 					<def>GenStepPrisonerRescue</def>
+					<prisonerRescuePer100kTiles>
+            <min>111.1</min>
+            <max>155.5</max>
+          </prisonerRescuePer100kTiles>
 				</li>
 				<li Class="NomadsLand.ScenPart_GenStepItemStashes">
 					<def>GenStepItemStashes</def>
+					<itemStashesPer100kTiles>
+            <min>60.0</min>
+            <max>80.0</max>
+          </itemStashesPer100kTiles>
 				</li>
 
 				<!-- Player pawns modifiers -->
@@ -78,18 +102,21 @@
           <def>StartingThing_Defined</def>
           <thingDef>Bedroll</thingDef>
 					<stuff>Cloth</stuff>
-					<count>3</count>
+					<count>4</count>
         </li>
 				<li Class="ScenPart_StartingAnimal">
 					<def>StartingAnimal</def>
-					<count>3</count>
-					<bondToRandomPlayerPawnChance>1.0</bondToRandomPlayerPawnChance>
+					<animalKind>Muffalo</animalKind>
+					<count>2</count>
 				</li>
 
 				<!-- Rules -->
 				<!-- TODO: mtb for spawning new sites... -->
 				<li Class="NomadsLand.Rule_MapsGenerateIncidents">
 					<def>Rule_MapsGenerateIncidents</def>
+				</li>
+				<li Class="NomadsLand.Rule_ExtendForceExitTimer">
+					<def>Rule_ExtendForceExitTimer</def>
 				</li>
 
 				<!-- Game start dialog -->
@@ -126,12 +153,36 @@
 				<!-- Extra World Gen Steps -->
 				<li Class="NomadsLand.ScenPart_GenStepOutposts">
 					<def>GenStepOutposts</def>
+					<outpostsPer100kTiles>
+            <min>315.0</min>
+            <max>395.0</max>
+          </outpostsPer100kTiles>
+					<meanThreatValue>100</meanThreatValue>
+					<threatVariance>1250</threatVariance>
+					<threatDensity>
+						<points>
+							<li>0,0</li>
+							<li>25,25</li>
+							<li>100,550</li>
+							<li>200,150</li>
+							<li>300,50</li>
+							<li>1000,1</li>
+						</points>
+					</threatDensity>
 				</li>
 				<li Class="NomadsLand.ScenPart_GenStepPrisonerRescues">
 					<def>GenStepPrisonerRescue</def>
+					<prisonerRescuePer100kTiles>
+            <min>111.1</min>
+            <max>155.5</max>
+          </prisonerRescuePer100kTiles>
 				</li>
 				<li Class="NomadsLand.ScenPart_GenStepItemStashes">
 					<def>GenStepItemStashes</def>
+					<itemStashesPer100kTiles>
+            <min>60.0</min>
+            <max>80.0</max>
+          </itemStashesPer100kTiles>
 				</li>
 
 				<li Class="NomadsLand.ScenPart_CaravanStart">
@@ -189,8 +240,7 @@
         </li>
 				<li Class="ScenPart_StartingAnimal">
 					<def>StartingAnimal</def>
-					<count>3</count>
-					<bondToRandomPlayerPawnChance>1.0</bondToRandomPlayerPawnChance>
+					<animalKind>Muffalo</animalKind>
 				</li>
 
 				<!-- Rules -->
@@ -204,11 +254,14 @@
 				<li Class="NomadsLand.Rule_NothingForbidden">
 					<def>Rule_NothingForbidden</def>
 				</li>
+				<li Class="NomadsLand.Rule_ExtendForceExitTimer">
+					<def>Rule_ExtendForceExitTimer</def>
+				</li>
 
 				<!-- Game start dialog -->
 				<li Class="ScenPart_GameStartDialog">
 					<def>GameStartDialog</def>
-					<text>You wake up from stiring in the ship's halls, one of your squad members peaks in. 'Enough smokeleaf sarge. I snagged the ships reconnaissance scan for this planet.' You grab your squad of six and head for the pods. Maybe this planet has some bubblegum.</text>
+					<text>You wake up from stirring in the ship's halls, one of your squad members peaks in. 'Enough smokeleaf sarge. I snagged the ships reconnaissance scan for this planet.' You grab your squad of six and head for the pods. Maybe this planet has some bubblegum.</text>
 					<closeSound>GameStartSting</closeSound>
 				</li>
 

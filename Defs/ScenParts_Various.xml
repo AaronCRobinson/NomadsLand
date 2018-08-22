@@ -75,4 +75,14 @@
     <summaryPriority>1000</summaryPriority>
   </ScenPartDef>
 
+  <ScenPartDef>
+    <defName>Rule_ExtendForceExitTimer</defName>
+    <label>extend force exit timer</label>
+    <description>There is addition time to exit sites.</description>
+    <scenPartClass>NomadsLand.Rule_ExtendForceExitTimer</scenPartClass>
+    <category>Rule</category>
+    <selectionWeight>1.0</selectionWeight>
+    <summaryPriority>1000</summaryPriority>
+  </ScenPartDef>
+
 </Defs>
