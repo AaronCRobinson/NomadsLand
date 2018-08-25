@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>/Defs/ResearchProjectDef[defName = "Electricity"]/tags</xpath>
+		<value><li>RaiderStart</li></value>
+	</Operation>
+
+	<Operation Class="PatchOperationInsert">
+		<xpath>/Defs/ResearchProjectDef[defName = "IEDs"]</xpath>
+		<value>
+			<tags>
+				<li>RaiderStart</li>
+			</tags>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationInsert">
+		<xpath>/Defs/ResearchProjectDef[defName = "Smithing"]</xpath>
+		<value>
+			<tags>
+				<li>RaiderStart</li>
+			</tags>
+		</value>
+	</Operation>
+	
+	<Operation Class="PatchOperationInsert">
+		<xpath>/Defs/ResearchProjectDef[defName = "Machining"]</xpath>
+		<value>
+			<tags>
+				<li>RaiderStart</li>
+			</tags>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationInsert">
+		<xpath>/Defs/ResearchProjectDef[defName = "Gunsmithing"]</xpath>
+		<value>
+			<tags>
+				<li>RaiderStart</li>
+			</tags>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationInsert">
+		<xpath>/Defs/ResearchProjectDef[defName = "Mortars"]</xpath>
+		<value>
+			<tags>
+				<li>RaiderStart</li>
+			</tags>
+		</value>
+	</Operation>
+
+</Patch>

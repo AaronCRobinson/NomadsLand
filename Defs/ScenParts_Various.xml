@@ -85,4 +85,16 @@
     <summaryPriority>1000</summaryPriority>
   </ScenPartDef>
 
+  <!--===================== misc ====================-->
+
+  <ScenPartDef>
+    <defName>ScenPart_IncidentInjector</defName>
+    <label>incident injector</label>
+    <description>This is used to inject incidents</description>
+    <scenPartClass>NomadsLand.ScenPart_IncidentInjector</scenPartClass>
+    <category>Misc</category>
+    <selectionWeight>1.0</selectionWeight>
+    <summaryPriority>1000</summaryPriority>
+  </ScenPartDef>
+
 </Defs>

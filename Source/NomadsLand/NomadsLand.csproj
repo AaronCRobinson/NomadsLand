@@ -53,12 +53,14 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RulesExt.cs" />
     <Compile Include="ScenParts.cs" />
+    <Compile Include="IncidentInjector.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>xcopy /S /Y "$(TargetDir)*" "C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\$(ProjectName)\Assemblies\"
 xcopy /S /Y "$(SolutionDir)..\About\*" "C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\$(ProjectName)\About\"
-xcopy /S /Y "$(SolutionDir)..\Defs\*" "C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\$(ProjectName)\Defs\"</PostBuildEvent>
+xcopy /S /Y "$(SolutionDir)..\Defs\*" "C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\$(ProjectName)\Defs\"
+xcopy /S /Y "$(SolutionDir)..\Patches\*" "C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\$(ProjectName)\Patches\"</PostBuildEvent>
   </PropertyGroup>
   <PropertyGroup>
     <PreBuildEvent>del /S /Q "C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\$(ProjectName)\Defs\*"

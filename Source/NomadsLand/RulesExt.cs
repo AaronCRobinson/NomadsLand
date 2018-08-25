@@ -1,31 +1,20 @@
 ﻿using Verse;
 using RimWorld;
 using RimWorld.Planet;
-using System.Reflection;
-using Harmony;
 
 namespace NomadsLand
 {
     public class NomadsLand_RulesExt : GameComponent
     {
-        private bool disallowBuildings = false;
-        public bool DisallowBuildings { get; set; }
-
-        private bool mapsGenerateIncidents = false;
-        public bool MapsGenerateIncidents { get; set; }
-
-        private bool nothingForbidden = false;
-        public bool NothingForbidden { get; set; }
-
-        private bool caravanStart = false;
-        public bool CaravanStart { get; set; }
-
-        private bool extendForceExitTimer = false;
-        public bool ExtendForceExitTimer { get; set; }
+        public bool disallowBuildings = false;
+        public bool mapsGenerateIncidents = false;
+        public bool nothingForbidden = false;
+        public bool caravanStart = false;
+        public bool extendForceExitTimer = false;
 
         public NomadsLand_RulesExt() { }
-
         public NomadsLand_RulesExt(Game game) { }
+
         public override void ExposeData()
         {
             Scribe_Values.Look<bool>(ref this.disallowBuildings, "disallowAllBuilding", false);
@@ -44,10 +33,14 @@ namespace NomadsLand
         public override void FinalizeInit()
         {
             base.FinalizeInit();
+            // TODO: should this be wrapped in a check?
+            // TODO: known side-effects?
+            // NOTE: required to avoid latter errors (TODO: revisit)
             Current.Game.tickManager.gameStartAbsTick = GenTicks.ConfiguredTicksAbsAtGameStart;
         }
     }
 
+    // TODO: too much Rand...
     public class MapIncidentGenerator : MapComponent
     {
         public MapIncidentGenerator(Map map) : base(map) { }
@@ -55,7 +48,7 @@ namespace NomadsLand
         public override void MapGenerated()
         {
             base.MapGenerated();
-            if (Current.Game.GetComponent<NomadsLand_RulesExt>().MapsGenerateIncidents)
+            if (Current.Game.GetComponent<NomadsLand_RulesExt>().mapsGenerateIncidents)
             {
                 if (Rand.Chance(0.0625f))
                     Find.Storyteller.incidentQueue.Add(IncidentDefOf.StrangerInBlackJoin, Find.TickManager.TicksGame + Rand.Range(100,10000), this.IncidentParms);

@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+	<!-- =========================== Good ============================-->
+
+	<!--<IncidentDef>
+		<defName>WandererJoin</defName>
+		<label>wanderer join</label>
+		<category>Misc</category>
+    <targetTags>
+      <li>Map_PlayerHome</li>
+    </targetTags>
+		<workerClass>IncidentWorker_WandererJoin</workerClass>
+		<letterLabel>Wanderer joins</letterLabel>
+		<letterText>A [PAWN_kind] named [PAWN_nameDef] has arrived and is joining the colony. [PAWN_pronoun] is a [PAWN_title].\n\n[PAWN_pronoun] is willing to contribute, but will not leave voluntarily. If you don't want [PAWN_nameDef], you can banish [PAWN_objective], sell [PAWN_objective] into slavery, or simply kill [PAWN_objective]. However, your other colonists may find this disturbing.</letterText>
+		<baseChance>0.4</baseChance>
+		<pawnKind>Villager</pawnKind>
+		<populationEffect>IncreaseEasy</populationEffect>
+	</IncidentDef>-->
+
+	<IncidentDef>
+		<defName>RefugeePodCrash</defName>
+		<label>transport pod crash</label>
+		<category>Misc</category>
+    <targetTags>
+      <li>ScenPart</li>
+    </targetTags>
+		<workerClass>IncidentWorker_TransportPodCrash</workerClass>
+		<baseChance>1.5</baseChance>
+		<populationEffect>IncreaseMedium</populationEffect>
+	</IncidentDef>
+
+	<!-- =========================== Neutral ============================-->
+	
+  <!--<IncidentDef>
+    <defName>RefugeeChased</defName>
+    <label>chased refugee</label>
+		<category>Misc</category>
+    <targetTags>
+      <li>Map_PlayerHome</li>
+    </targetTags>
+    <workerClass>IncidentWorker_RefugeeChased</workerClass>
+    <baseChance>2</baseChance>
+    <populationEffect>IncreaseHard</populationEffect>
+    <minRefireDays>8</minRefireDays>
+	<earliestDay>22</earliestDay>
+  </IncidentDef>-->
+
+</Defs>

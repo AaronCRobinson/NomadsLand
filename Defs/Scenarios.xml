@@ -258,6 +258,11 @@
 					<def>Rule_ExtendForceExitTimer</def>
 				</li>
 
+				<!-- Misc -->
+				<li Class="NomadsLand.ScenPart_IncidentInjector">
+					<def>ScenPart_IncidentInjector</def>
+				</li>
+
 				<!-- Game start dialog -->
 				<li Class="ScenPart_GameStartDialog">
 					<def>GameStartDialog</def>
