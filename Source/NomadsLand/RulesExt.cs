@@ -30,13 +30,12 @@ namespace NomadsLand
     {
         public NomadsLand_WorldComponent(World world) : base(world) { }
 
+        // NOTE: required to avoid latter errors (TODO: revisit)
         public override void FinalizeInit()
         {
             base.FinalizeInit();
-            // TODO: should this be wrapped in a check?
-            // TODO: known side-effects?
-            // NOTE: required to avoid latter errors (TODO: revisit)
-            Current.Game.tickManager.gameStartAbsTick = GenTicks.ConfiguredTicksAbsAtGameStart;
+            if (Current.Game.GetComponent<NomadsLand_RulesExt>().caravanStart)
+                Current.Game.tickManager.gameStartAbsTick = GenTicks.ConfiguredTicksAbsAtGameStart;
         }
     }
 
