@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ModSyncNinjaData>
+  <ID>5774fe17-ea67-42ab-a1a7-7d05fb8fb776</ID>
+  <ModName>NomadsLand</ModName>
+  <Version>0.19.0</Version>
+  <SaveBreaking>False</SaveBreaking>
+  <Host name="Github">
+    <Owner>AaronCRobinson</Owner>
+    <Project>NomadsLand</Project>
+    <AboutDir>About</AboutDir>
+    <DownloadFrom>ModSyncMainPage</DownloadFrom>
+    <Branch>master</Branch>
+  </Host>
+</ModSyncNinjaData>
